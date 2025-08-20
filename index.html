@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Neura 10 Project</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    font-family: 'Arial', sans-serif;
+  }
+  .page {
+    display: none;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-align: center;
+  }
+  .page p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    font-size: 2em;
+  }
+  /* Page 1 */
+  #page1 { background-color: #1E3A8A; color: white; }
+  /* Page 2 */
+  #page2 { background-color: black; color: #3B82F6; }
+  /* Page 3 */
+  #page3 { background-color: white; color: white; } /* texte blanc caché */
+  /* Page 4 */
+  #page4 {
+    background-color: #1E3A8A;
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+  }
+  #page4 a {
+    display: block;
+    width: 100px;
+    height: 100px;
+    background-color: white;
+    text-decoration: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .hidden-cursor {
+    cursor: default;
+  }
+</style>
+</head>
+<body class="hidden-cursor">
+
+<div id="page1" class="page">
+  <p>Le ciel est si beau, pourquoi le regarder sur un écran ?</p>
+</div>
+
+<div id="page2" class="page">
+  <p>Es‑tu nostalgique ?</p>
+</div>
+
+<div id="page3" class="page">
+  <p>Penses‑tu qu’internet est plus vrai que <span id="clickDehors">dehors</span> ?</p>
+</div>
+
+<div id="page4" class="page">
+  <a href="https://youtube.com/@neura-10project?si=xSFlDMLq1PcE5Gs7" target="_blank"></a>
+</div>
+
+<script>
+  let currentPage = 1;
+  const totalPages = 4;
+
+  function showPage(n) {
+    for (let i = 1; i <= totalPages; i++) {
+      document.getElementById('page' + i).style.display = 'none';
+    }
+    document.getElementById('page' + n).style.display = 'block';
+    currentPage = n;
+  }
+
+  showPage(1);
+
+  // Page 1 clic en haut à droite
+  document.getElementById('page1').addEventListener('click', function(e) {
+    if (e.clientX > window.innerWidth - 100 && e.clientY < 100) {
+      showPage(2);
+    }
+  });
+
+  // Page 2 clic en haut à gauche
+  document.getElementById('page2').addEventListener('click', function(e) {
+    if (e.clientX < 100 && e.clientY < 100) {
+      showPage(3);
+    }
+  });
+
+  // Page 3 clic sur "dehors"
+  document.getElementById('clickDehors').addEventListener('click', function(e) {
+    showPage(4);
+  });
+
+</script>
+
+</body>
+</html>
